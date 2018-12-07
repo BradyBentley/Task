@@ -12,14 +12,13 @@ class ButtonTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     @IBOutlet weak var primaryLabel: UILabel!
-    @IBOutlet weak var completeButton: UIButton!
     
     weak var delegate: ButtonTableViewCellDelegate?
     
-
+    @IBOutlet weak var completeButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     // MARK: - Actions
@@ -28,18 +27,15 @@ class ButtonTableViewCell: UITableViewCell {
     }
     
     func updateButton(_ isComplete: Bool) {
-        if isComplete == true {
-            completeButton.setImage(UIImage(named: "complete"), for: .normal)
-        } else {
-            completeButton.setImage(UIImage(named: "incomplete"), for: .normal)
-        }
+        let buttonImage = isComplete ? "complete" : "incomplete"
+        completeButton.setImage(UIImage(named: buttonImage), for: .normal)
     }
 }
 
 extension ButtonTableViewCell {
     func update(withTask task: Task) {
-        updateButton(task.isComplete)
         primaryLabel.text = task.name
+        updateButton(task.isComplete)
     }
 }
 

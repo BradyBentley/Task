@@ -14,15 +14,19 @@ class TaskController {
     //Shared instance
     static let shared = TaskController()
     
-    init() {
-        self.tasks = fetchTasks()
-    }
+    let fetchedResultsController: NSFetchedResultsController<Task> = {
+        let request: NSFetchRequest<Task> = Task.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "isComplete", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "due", ascending: true)]
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.context, sectionNameKeyPath: nil, cacheName: nil)
+    }()
     
-    var mockTask: [Task] {
-        let task1 = Task(name: "Walk around", notes: "Close them rings", due: Date(timeIntervalSinceNow: 20000))
-        let task2 = Task(name: "Eat some cookies", notes: "Enjoy!", due: Date(timeIntervalSinceNow: 26000))
-        let task3 = Task(name: "Play Some games", notes: "What game will you play", due: Date(timeIntervalSinceNow: 30000))
-        return [task1, task2, task3]
+    init () {
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("There was an error in \(#function) : \(error.localizedDescription)")
+        }
     }
     
     // MARK: - CRUD
@@ -42,12 +46,13 @@ class TaskController {
     
     //Delete
     func remove(task: Task){
-        CoreDataStack.context.delete(task)
+        task.managedObjectContext?.delete(task)
         saveToPersistentStore()
     }
     
     func toggleView(task: Task) {
         task.isComplete.toggle()
+        saveToPersistentStore()
         
     }
     

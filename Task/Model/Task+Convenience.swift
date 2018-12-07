@@ -12,10 +12,13 @@ import CoreData
 extension Task {
     
     @discardableResult
-    convenience init(name: String, notes: String, due: Date, context: NSManagedObjectContext = CoreDataStack.context) {
+    convenience init(name: String, notes: String? = nil, due: Date = Date(), isComplete: Bool = false, context: NSManagedObjectContext = CoreDataStack.context) {
         
         self.init(context: context)
         self.name = name
+        self.due = due
+        self.notes = notes
+        self.isComplete = false
     }
 }
 

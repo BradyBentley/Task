@@ -26,7 +26,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tb0-BF-wmp">
-                                            <rect key="frame" x="16" y="11" width="114" height="21"/>
+                                            <rect key="frame" x="16" y="11.5" width="114" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="114" id="SyB-Tb-qCV"/>
                                             </constraints>
@@ -34,15 +34,12 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dfg-gX-gyz">
-                                            <rect key="frame" x="324" y="4" width="35" height="35"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dfg-gX-gyz">
+                                            <rect key="frame" x="324" y="4" width="35" height="46.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="35" id="VZl-I8-Ume"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <connections>
-                                                <action selector="buttonTapped:" destination="Kyh-Fd-de9" eventType="touchUpInside" id="CbG-z7-zBE"/>
-                                            </connections>
+                                            <state key="normal" image="incomplete"/>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -58,7 +55,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="completeButton" destination="Dfg-gX-gyz" id="rO0-dV-nId"/>
+                                    <outlet property="completeButton" destination="Dfg-gX-gyz" id="J1N-5S-t3M"/>
                                     <outlet property="primaryLabel" destination="Tb0-BF-wmp" id="YQT-0f-Bwh"/>
                                     <segue destination="j8j-wI-d8G" kind="show" identifier="ToTaskDetail" id="YmJ-PF-3xt"/>
                                 </connections>
@@ -229,6 +226,9 @@
             <point key="canvasLocation" x="-396" y="139"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="incomplete" width="20.803611755371094" height="20.803611755371094"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YmJ-PF-3xt"/>
     </inferredMetricsTieBreakers>
